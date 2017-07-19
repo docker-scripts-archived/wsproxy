@@ -1,5 +1,5 @@
-Web Server Proxy
-----------------
+About Web Server Proxy
+----------------------
 
 If we want to host several domains/subdomains on the same webserver
 we can use *name-based virtual hosting*. If we need to host these
@@ -12,17 +12,13 @@ rescue. We can have a docker container with apache2 that forwards
 all the http requests to the other containers (webservers), behaving
 like a kind of http gateway or hub. This is what **wsproxy** does.
 
-Usage
------
+Installation
+------------
 
  + First install `ds` (docker scripts):
-   ```
-   git clone https://github.com/docker-scripts/ds /usr/local/src/ds
-   cd /usr/local/src/ds/
-   make install
-   ```
+   https://github.com/docker-scripts/ds#installation
 
- + Get the moodle scripts from github:
+ + Then get the moodle scripts from github:
    ```
    git clone https://github.com/docker-scripts/wsproxy /usr/local/src/
    ```
@@ -46,6 +42,9 @@ Usage
    ds create
    ds config
    ```
+
+Usage
+-----
 
  + Create the containers of each webserver using commands like this:
    ```

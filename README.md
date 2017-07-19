@@ -20,7 +20,7 @@ Installation
 
  + Then get the moodle scripts from github:
    ```
-   git clone https://github.com/docker-scripts/wsproxy /usr/local/src/
+   git clone https://github.com/docker-scripts/wsproxy /usr/local/src/wsproxy
    ```
 
  + Create a working directory for the wsproxy container:
@@ -31,7 +31,7 @@ Installation
 
  + Initialize and fix the settings:
    ```
-   ds init /usr/local/src/moodle
+   ds init /usr/local/src/wsproxy
    vim settings.sh
    ds info
    ```

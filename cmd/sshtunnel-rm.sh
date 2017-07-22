@@ -1,4 +1,10 @@
-# Remove the sshtunnel for a domain.
+cmd_sshtunnel-rm_help() {
+    cat <<_EOF
+    sshtunnel-rm
+        Remove the sshtunnel for a domain.
+
+_EOF
+}
 
 cmd_sshtunnel-rm() {
     # get the domain

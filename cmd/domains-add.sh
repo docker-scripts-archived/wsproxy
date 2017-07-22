@@ -1,4 +1,10 @@
-# Add one or more domains to be served by the web proxy.
+cmd_domains-add_help() {
+    cat <<_EOF
+    domains-add
+         Add one or more domains to the configuration of the web proxy.
+
+_EOF
+}
 
 cmd_domains-add() {
     # get the container and the domains

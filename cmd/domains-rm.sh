@@ -1,4 +1,10 @@
-# Remove one or more domains from the configuration of the web proxy.
+cmd_domains-rm_help() {
+    cat <<_EOF
+    domains-rm
+         Remove one or more domains from the configuration of the web proxy.
+
+_EOF
+}
 
 cmd_domains-rm() {
     # get the domains

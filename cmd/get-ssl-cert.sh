@@ -1,4 +1,10 @@
-# Get free SSL certificates from letsencrypt.org
+cmd_get-ssl-cert_help() {
+    cat <<_EOF
+    get-ssl-cert
+         Get free SSL certificates from letsencrypt.org
+
+_EOF
+}
 
 cmd_get-ssl-cert() {
     local usage="Usage: $COMMAND <email> <domain>... [-t,--test]"

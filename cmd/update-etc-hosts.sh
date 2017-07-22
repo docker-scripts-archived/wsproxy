@@ -1,3 +1,11 @@
+cmd_update-etc-hosts_help() {
+    cat <<_EOF
+    update-etc-hosts
+        Update the file /etc/hosts inside the wsproxy container.
+
+_EOF
+}
+
 cmd_update-etc-hosts() {
     # get the current copy of /etc/hosts
     docker cp $CONTAINER:/etc/hosts hosts

@@ -1,4 +1,10 @@
-# Setup a domain to be served by a remote web server through a ssh tunnel.
+cmd_sshtunnel-add_help() {
+    cat <<_EOF
+    sshtunnel-add
+        Setup a domain to be served by a remote web server through a ssh tunnel.
+
+_EOF
+}
 
 cmd_sshtunnel-add() {
     # get the domain
@@ -8,9 +14,9 @@ cmd_sshtunnel-add() {
     # remove the domain, if it exists
     ds sshtunnel rm $domain
 
-    ### -------------------------------------------------
+    # -------------------------------------------------
 
-    ### find a pair of unused ports for http and https
+    # find a pair of unused ports for http and https
     cat sshtunnel-keys/*.ports > sshtunnel-keys/ports.txt
     port_http=$(shuf -i 1025-65535 -n 1)
     while grep -qs $port_http sshtunnel-keys/ports.txt; do

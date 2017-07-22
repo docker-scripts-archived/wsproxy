@@ -9,7 +9,7 @@ _EOF
 cmd_sshtunnel-rm() {
     # get the domain
     [[ $# -lt 1 ]] && fail "Usage: $COMMAND <domain>"
-    domain=$1
+    local domain=$1
 
     # remove ssh keys
     rm -f sshtunnel-keys/$domain.{key,key.pub,sh,ports}

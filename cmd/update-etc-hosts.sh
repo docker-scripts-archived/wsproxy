@@ -14,6 +14,7 @@ cmd_update-etc-hosts() {
     sed -i hosts -e '/^### containers/,$ d'
 
     # add new entries to hosts
+    local container domains ip
     echo "### containers" >> hosts
     while read line
     do
@@ -37,6 +38,7 @@ cmd_update-etc-hosts() {
     done < containers.txt
 
     # add new entries for sshtunnel domains
+    local domain
     for file in sshtunnel-keys/*.key; do
         domain=$(basename ${file%.key})
         echo "127.0.0.1 $domain" >> hosts

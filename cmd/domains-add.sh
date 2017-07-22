@@ -9,9 +9,9 @@ _EOF
 cmd_domains-add() {
     # get the container and the domains
     [[ $# -lt 2 ]] && fail "Usage: $COMMAND <container> <domain> <domain> ..."
-    container=$1
+    local container=$1
     shift
-    domains="$@"
+    local domains="$@"
 
     # remove these domains, if they exist
     ds domains-rm $domains

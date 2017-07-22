@@ -9,7 +9,7 @@ _EOF
 cmd_domains-rm() {
     # get the domains
     [[ $# -lt 1 ]] && fail "Usage: $COMMAND <domain> <domain> ..."
-    domains="$@"
+    local domains="$@"
 
     # remove apache2 config files for each domain
     for domain in $domains

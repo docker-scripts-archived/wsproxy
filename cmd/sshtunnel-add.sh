@@ -9,7 +9,7 @@ _EOF
 cmd_sshtunnel-add() {
     # get the domain
     [[ $1 == '' ]] && fail "Usage: $COMMAND <domain>"
-    domain=$1
+    local domain=$1
 
     # remove the domain, if it exists
     ds sshtunnel rm $domain
@@ -18,12 +18,12 @@ cmd_sshtunnel-add() {
 
     # find a pair of unused ports for http and https
     cat sshtunnel-keys/*.ports > sshtunnel-keys/ports.txt
-    port_http=$(shuf -i 1025-65535 -n 1)
+    local port_http=$(shuf -i 1025-65535 -n 1)
     while grep -qs $port_http sshtunnel-keys/ports.txt; do
         port_http=$(shuf -i 1025-65535 -n 1)
     done
     echo $port_http >> sshtunnel-keys/ports.txt
-    port_https=$(shuf -i 1025-65535 -n 1)
+    local port_https=$(shuf -i 1025-65535 -n 1)
     while grep -qs $port_https sshtunnel-keys/ports.txt; do
         port_https=$(shuf -i 1025-65535 -n 1)
     done
@@ -33,11 +33,11 @@ cmd_sshtunnel-add() {
     # -------------------------------------------------
 
     # generate the key pair
-    keyfile=sshtunnel-keys/$domain.key
+    local keyfile=sshtunnel-keys/$domain.key
     ssh-keygen -t rsa -f $keyfile -q -N ''
 
     # put some restrictions on the public key
-    restrictions='command="netstat -an | egrep 'tcp.*:$port_https.*LISTEN'",no-agent-forwarding,no-user-rc,no-X11-forwarding'
+    local restrictions='command="netstat -an | egrep 'tcp.*:$port_https.*LISTEN'",no-agent-forwarding,no-user-rc,no-X11-forwarding'
     sed -e "s#^#$restrictions #" -i $keyfile.pub
 
     # update authorized keys
@@ -62,7 +62,7 @@ cmd_sshtunnel-add() {
     # -------------------------------------------------
 
     # build the script that can start the tunnel on the client side
-    sshtunnel_start=sshtunnel-keys/$domain.sh
+    local sshtunnel_start=sshtunnel-keys/$domain.sh
     cp $SRC/misc/sshtunnel-start.sh $sshtunnel_start
     sed -i $sshtunnel_start \
         -e "/^SSH=/ c SSH=$PORT_SSH" \

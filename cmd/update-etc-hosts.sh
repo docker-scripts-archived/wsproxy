@@ -29,7 +29,7 @@ cmd_update-etc-hosts() {
         test -z "$domains" && continue
 
         # get the ip of the container
-        ip=$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' $container)
+        ip=$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' $container 2>/dev/null)
         test -z "$ip" && continue
 
         # add a new entry for this ip

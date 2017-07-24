@@ -1,6 +1,6 @@
 cmd_domains-add_help() {
     cat <<_EOF
-    domains-add
+    domains-add <container> <domain> <domain> ...
          Add one or more domains to the configuration of the web proxy.
 
 _EOF

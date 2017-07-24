@@ -1,6 +1,6 @@
 cmd_get-ssl-cert_help() {
     cat <<_EOF
-    get-ssl-cert
+    get-ssl-cert <email> <domain>... [-t,--test]
          Get free SSL certificates from letsencrypt.org
 
 _EOF

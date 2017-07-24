@@ -1,6 +1,6 @@
 cmd_sshtunnel-rm_help() {
     cat <<_EOF
-    sshtunnel-rm
+    sshtunnel-rm <domain>
         Remove the sshtunnel for a domain.
 
 _EOF

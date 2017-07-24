@@ -1,6 +1,6 @@
 cmd_domains-rm_help() {
     cat <<_EOF
-    domains-rm
+    domains-rm <domain> <domain> ...
          Remove one or more domains from the configuration of the web proxy.
 
 _EOF

@@ -1,6 +1,6 @@
 cmd_sshtunnel-add_help() {
     cat <<_EOF
-    sshtunnel-add
+    sshtunnel-add <domain>
         Setup a domain to be served by a remote web server through a ssh tunnel.
 
 _EOF
@@ -12,7 +12,7 @@ cmd_sshtunnel-add() {
     local domain=$1
 
     # remove the domain, if it exists
-    ds sshtunnel rm $domain
+    ds sshtunnel-rm $domain
 
     # -------------------------------------------------
 

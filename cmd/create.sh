@@ -16,6 +16,6 @@ cmd_create() {
         -v $(pwd)/sites-available:/etc/apache2/sites-available \
         -v $(pwd)/sites-enabled:/etc/apache2/sites-enabled
 
-    cp $SRC/misc/apache2.conf sites-available/xmp.conf
+    cp $APP_DIR/misc/apache2.conf sites-available/xmp.conf
     touch containers.txt
 }

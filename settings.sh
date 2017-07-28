@@ -1,4 +1,4 @@
-SRC=/usr/local/src/wsproxy
+APP=wsproxy
 
 ### Docker settings.
 IMAGE=wsproxy

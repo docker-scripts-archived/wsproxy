@@ -63,7 +63,7 @@ cmd_sshtunnel-add() {
 
     # build the script that can start the tunnel on the client side
     local sshtunnel_start=sshtunnel-keys/$domain.sh
-    cp $SRC/misc/sshtunnel-start.sh $sshtunnel_start
+    cp $APP_DIR/misc/sshtunnel-start.sh $sshtunnel_start
     sed -i $sshtunnel_start \
         -e "/^SSH=/ c SSH=$PORT_SSH" \
         -e "/^HTTP=/ c HTTP=$port_http" \

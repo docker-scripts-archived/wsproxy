@@ -18,4 +18,29 @@ cmd_create() {
 
     cp $APP_DIR/misc/apache2.conf sites-available/xmp.conf
     touch containers.txt
+
+    _create_cmd_wsproxy
+}
+
+_create_cmd_wsproxy() {
+    mkdir -p $DSDIR/cmd/
+    local cmdfile=$DSDIR/cmd/$CONTAINER.sh
+    cat <<-__EOF__ > $cmdfile
+cmd_${CONTAINER}_help() {
+    cat <<_EOF
+    $CONTAINER [add | rm | ssl-cert [-t]]
+        Manage the domain '\$DOMAIN' of the container.
+
+_EOF
+}
+
+cmd_${CONTAINER}() {
+    case \$1 in
+        add)       ds @$CONTAINER domains-add  \$CONTAINER \$DOMAIN  ;;
+        rm)        ds @$CONTAINER domains-rm   \$DOMAIN  ;;
+        ssl-cert)  ds @$CONTAINER get-ssl-cert \$GMAIL_ADDRESS \$DOMAIN \$2  ;;
+        *)         echo -e "Usage:\\n\$(cmd_${CONTAINER}_help)" ; exit ;;
+    esac
+}
+__EOF__
 }

@@ -7,24 +7,13 @@ _EOF
 }
 
 cmd_config() {
-    cmd_start
-    sleep 3
+    ds runcfg set_prompt
+    ds runcfg ssmtp
+    ds runcfg apache2
 
-    # run config scripts
-    local config="
-        set_prompt
-        ssmtp
-        apache2
-
-        update-scripts
-        letsencrypt
-        sshd
-        create-user
-        apache2
-    "
-    for cfg in $config; do
-        ds runcfg $cfg
-    done
-
-    cmd_restart
+    ds runcfg update-scripts
+    ds runcfg letsencrypt
+    ds runcfg sshd
+    ds runcfg create-user
+    ds runcfg apache2
 }

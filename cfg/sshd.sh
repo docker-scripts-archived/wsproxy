@@ -10,10 +10,10 @@ sed -i /etc/ssh/sshd_config \
     -e 's/^AllowUsers/#AllowUsers/'
 
 sed -i /etc/ssh/sshd_config \
-    -e '/^### p2p config/,$ d'
+    -e '/^### wsproxy config/,$ d'
 
 cat <<EOF >> /etc/ssh/sshd_config
-### p2p config
+### wsproxy config
 GatewayPorts yes
 PermitRootLogin no
 PasswordAuthentication no

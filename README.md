@@ -74,6 +74,32 @@ ds update-etc-hosts
 ```
 
 
+Commands
+--------
+
+    domains-add <container> <domain> <domain> ...
+         Add one or more domains to the configuration of the web proxy.
+
+    domains-rm <domain> <domain> ...
+         Remove one or more domains from the configuration of the web proxy.
+
+    get-ssl-cert <email> <domain>... [-t,--test]
+         Get free SSL certificates from letsencrypt.org
+
+    reload
+        Update the configuration of apache2 and ssh.
+
+    sshtunnel-add <domain>
+        Setup a domain to be served by a remote web server through a ssh tunnel.
+
+    sshtunnel-rm <domain>
+        Remove the sshtunnel for a domain.
+
+    update-etc-hosts
+        Update the file /etc/hosts inside the wsproxy container.
+
+
+
 How it works
 ------------
 

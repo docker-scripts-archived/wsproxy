@@ -21,9 +21,6 @@ cmd_sshtunnel-rm() {
     rm -f sites-enabled/$domain.conf
     rm -f sites-available/$domain.conf
 
-    # update /etc/hosts
-    ds update-etc-hosts
-
     # reload apache2 config
     ds exec service apache2 reload
 }

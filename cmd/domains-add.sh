@@ -28,9 +28,6 @@ cmd_domains-add() {
     # add the domains on containers.txt
     echo "$container: $domains" >> containers.txt
 
-    # update /etc/hosts
-    ds update-etc-hosts
-
     # reload apache2 config
     ds exec service apache2 reload
 }

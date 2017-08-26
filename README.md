@@ -65,14 +65,6 @@ Usage
    ds get-ssl-cert info@test1.example.org test1.example.org test2.example.org
    ```
 
-**Note:** In case that one of the containers `ws1` or `ws2` is stopped
-and started again, it may change its IP (which is given with DHCP by
-docker). In this case the ~/etc/hosts~ inside the proxy container
-should be updated as well:
-```
-ds update-etc-hosts
-```
-
 
 Commands
 --------

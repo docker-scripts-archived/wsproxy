@@ -1,13 +1,5 @@
 #!/bin/bash -x
 
-### create a script to update /etc/hosts inside the container
-cat <<'EOF' > /usr/local/sbin/update-etc-hosts.sh
-#!/bin/bash
-cat /etc/hosts.new > /etc/hosts
-rm /etc/hosts.new
-EOF
-chmod +x /usr/local/sbin/update-etc-hosts.sh
-
 ### create a script to update /home/sshtunnel/.ssh/authorized_keys inside the container
 cat <<'EOF' > /usr/local/sbin/update-authorized-keys.sh
 #!/bin/bash

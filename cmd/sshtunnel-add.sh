@@ -53,9 +53,6 @@ cmd_sshtunnel-add() {
         -e "s#https://example\.org#https://$domain:$port_https#"
     ln -s ../sites-available/$domain.conf sites-enabled/
 
-    # update /etc/hosts
-    ds update-etc-hosts
-
     # reload apache2 config
     ds exec service apache2 reload
 

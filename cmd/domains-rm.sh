@@ -25,9 +25,6 @@ cmd_domains-rm() {
         sed -i containers.txt -e "/ $domain/d"
     done
 
-    # update /etc/hosts
-    ds update-etc-hosts
-
     # reload apache2 config
     ds exec service apache2 reload
 }

@@ -36,9 +36,12 @@ _EOF
 
 cmd_${CONTAINER}() {
     case \$1 in
-        add)       ds @$CONTAINER domains-add  \$CONTAINER \$DOMAIN  ;;
-        rm)        ds @$CONTAINER domains-rm   \$DOMAIN  ;;
-        ssl-cert)  ds @$CONTAINER get-ssl-cert \$GMAIL_ADDRESS \$DOMAIN \$2  ;;
+        add)       ds @$CONTAINER domains-add  \$CONTAINER \$DOMAIN \$DOMAINS  ;;
+        rm)        ds @$CONTAINER domains-rm   \$DOMAIN \$DOMAINS  ;;
+        ssl-cert)  for domain in \$DOMAIN \$DOMAINS; do
+                       ds @$CONTAINER get-ssl-cert \$GMAIL_ADDRESS \$domain \$2
+                   done
+                   ;;
         *)         echo -e "Usage:\\n\$(cmd_${CONTAINER}_help)" ; exit ;;
     esac
 }

@@ -11,10 +11,10 @@ cmd_create() {
     mkdir -p sites-available sites-enabled sshtunnel-keys letsencrypt
 
     orig_cmd_create \
-        -v $(pwd)/letsencrypt:/etc/letsencrypt \
-        -v $(pwd)/sshtunnel-keys:/home/sshtunnel/keys \
-        -v $(pwd)/sites-available:/etc/apache2/sites-available \
-        -v $(pwd)/sites-enabled:/etc/apache2/sites-enabled
+        --mount type=bind,src=$(pwd)/letsencrypt,dst=/etc/letsencrypt \
+        --mount type=bind,src=$(pwd)/sshtunnel-keys,dst=/home/sshtunnel/keys \
+        --mount type=bind,src=$(pwd)/sites-available,dst=/etc/apache2/sites-available \
+        --mount type=bind,src=$(pwd)/sites-enabled,dst=/etc/apache2/sites-enabled
 
     cp $APP_DIR/misc/apache2.conf sites-available/xmp.conf
     touch containers.txt

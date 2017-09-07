@@ -41,17 +41,20 @@ cmd_get-ssl-cert() {
     [[ $test == 1 ]] && exit 0
 
     # update config files
-    local first_domain certdir
-    first_domain=$(echo $domains | cut -d' ' -f1)
-    if [[ -d letsencrypt/live/$first_domain ]]; then
-        certdir=/etc/letsencrypt/live/$first_domain
-        for domain in $domains; do
-            sed -i sites-available/$domain.conf -r \
-                -e "s|#?SSLCertificateFile .*|SSLCertificateFile      $certdir/cert.pem|" \
-                -e "s|#?SSLCertificateKeyFile .*|SSLCertificateKeyFile   $certdir/privkey.pem|" \
-                -e "s|#?SSLCertificateChainFile .*|SSLCertificateChainFile $certdir/chain.pem|"
-        done
-    fi
+    local container=$(cat containers.txt | cut -d: -f1)
+    for domain in $domains; do
+        local certdir=/etc/letsencrypt/live/$domain
+        # update apache2 config file in wsproxy
+        sed -i sites-available/$domain.conf -r \
+            -e "s|#?SSLCertificateFile .*|SSLCertificateFile      $certdir/cert.pem|" \
+            -e "s|#?SSLCertificateKeyFile .*|SSLCertificateKeyFile   $certdir/privkey.pem|" \
+            -e "s|#?SSLCertificateChainFile .*|SSLCertificateChainFile $certdir/chain.pem|"
+        # update apache2 config file in the container
+        docker exec $container sed -i /etc/apache2/sites-available/$domain.conf -r \
+            -e "s|#?SSLCertificateFile .*|SSLCertificateFile      $certdir/cert.pem|" \
+            -e "s|#?SSLCertificateKeyFile .*|SSLCertificateKeyFile   $certdir/privkey.pem|" \
+            -e "s|#?SSLCertificateChainFile .*|SSLCertificateChainFile $certdir/chain.pem|"
+    done
 
     # reload apache2 config
     ds exec service apache2 reload

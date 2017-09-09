@@ -29,7 +29,8 @@ cmd_get-ssl-cert() {
     [[ -n $domains ]] || fail $usage
 
     # build the certbot args
-    local args="certonly --webroot -m $email --agree-tos -w /var/www"
+    local args="certonly  --non-interactive --webroot --keep-until-expiring"
+    args+=" --email $email --agree-tos --webroot-path /var/www"
     for domain in $domains; do
         args+=" -d $domain"
     done

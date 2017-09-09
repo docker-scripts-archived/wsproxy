@@ -42,7 +42,6 @@ cmd_get-ssl-cert() {
     [[ $test == 1 ]] && exit 0
 
     # update config files
-    local container=$(cat containers.txt | cut -d: -f1)
     for domain in $domains; do
         local certdir=/etc/letsencrypt/live/$domain
         # update apache2 config file in wsproxy
@@ -51,6 +50,7 @@ cmd_get-ssl-cert() {
             -e "s|#?SSLCertificateKeyFile .*|SSLCertificateKeyFile   $certdir/privkey.pem|" \
             -e "s|#?SSLCertificateChainFile .*|SSLCertificateChainFile $certdir/chain.pem|"
         # update apache2 config file in the container
+        local container=$(cat containers.txt | grep $domain | cut -d: -f1)
         docker exec $container sed -i /etc/apache2/sites-available/$domain.conf -r \
             -e "s|#?SSLCertificateFile .*|SSLCertificateFile      $certdir/cert.pem|" \
             -e "s|#?SSLCertificateKeyFile .*|SSLCertificateKeyFile   $certdir/privkey.pem|" \

@@ -7,13 +7,13 @@ _EOF
 }
 
 cmd_config() {
-    ds runcfg set_prompt
-    ds runcfg ssmtp
-    ds runcfg apache2
+    ds inject set_prompt.sh
+    ds inject ssmtp.sh
+    ds inject apache2.sh
 
-    ds runcfg update-scripts
-    ds runcfg letsencrypt
-    ds runcfg sshd
-    ds runcfg create-user
-    ds runcfg apache2
+    ds inject update-scripts.sh
+    ds inject letsencrypt.sh
+    ds inject sshd.sh
+    ds inject create-user.sh
+    ds inject apache2.sh
 }

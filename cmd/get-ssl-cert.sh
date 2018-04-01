@@ -38,7 +38,9 @@ cmd_get-ssl-cert() {
 
     # run certbot from inside the container
     ds exec certbot $args
+    [[ -z $? ]] || fail "\nCould not get a certificate for: '$domains'\n"
 
+    # if testing, stop here
     [[ $test == 1 ]] && exit 0
 
     # update config files

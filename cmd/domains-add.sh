@@ -17,8 +17,7 @@ cmd_domains-add() {
     ds domains-rm $domains
 
     # add apache2 config files for each domain
-    for domain in $domains
-    do
+    for domain in $domains; do
         cp sites-available/{xmp.conf,$domain.conf}
         sed -i sites-available/$domain.conf \
             -e "s/example\.org/$domain/g"
@@ -26,7 +25,12 @@ cmd_domains-add() {
     done
 
     # add the domains on containers.txt
-    echo "$container: $domains" >> containers.txt
+    grep -q -e "^$container:" containers.txt \
+        || echo "$container:" >> containers.txt
+    for domain in $domains; do
+        sed -i containers.txt \
+            -e "/$container:/ s/\$/ $domain/"
+    done
 
     # reload apache2 config
     ds exec service apache2 reload

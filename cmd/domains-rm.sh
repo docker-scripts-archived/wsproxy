@@ -22,8 +22,9 @@ cmd_domains-rm() {
     touch containers.txt
     for domain in $domains
     do
-        sed -i containers.txt -e "/ $domain/d"
+        sed -i containers.txt -e "s/ $domain//g"
     done
+    sed -i containers.txt -e '/:[[:space:]]*$/d'
 
     # reload apache2 config
     ds exec service apache2 reload

@@ -28,7 +28,7 @@ _create_cmd_wsproxy() {
     cat <<-__EOF__ > $cmdfile
 cmd_${CONTAINER}_help() {
     cat <<_EOF
-    $CONTAINER [add | rm | ssl-cert [-t]]
+    $CONTAINER [ls | add | rm | ssl-cert [-t]]
         Manage the domain '\$DOMAIN' of the container.
 
 _EOF
@@ -36,6 +36,7 @@ _EOF
 
 cmd_${CONTAINER}() {
     case \$1 in
+        ls)        ds @$CONTAINER domains-ls   \$CONTAINER  ;;
         add)       ds @$CONTAINER domains-add  \$CONTAINER \$DOMAIN \$DOMAINS  ;;
         rm)        ds @$CONTAINER domains-rm   \$DOMAIN \$DOMAINS  ;;
         ssl-cert)  for domain in \$DOMAIN \$DOMAINS; do

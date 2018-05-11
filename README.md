@@ -22,19 +22,10 @@ Installation
 
  + Init a container directory for wsproxy: `ds init wsproxy @wsproxy`
 
- + Initialize and fix the settings:
-   ```
-   cd /var/ds/wsproxy/
-   vim settings.sh
-   ds info
-   ```
+ + Initialize and fix the settings: `cd /var/ds/wsproxy/; vim settings.sh`
 
- + Build image, create the container and configure it:
-   ```
-   ds build
-   ds create
-   ds config
-   ```
+ + Build image, create the container and configure it: `ds make`
+
 
 Usage
 -----

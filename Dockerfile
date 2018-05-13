@@ -9,9 +9,9 @@ RUN apt update && \
 CMD ["/sbin/init"]
 WORKDIR /host
 
-RUN apt-get -y install rsyslog logrotate ssmtp logwatch cron
+RUN apt -y install rsyslog logrotate ssmtp logwatch cron
 
-RUN apt-get -y install apache2 wget openssh-server net-tools
+RUN apt -y install apache2 wget openssh-server net-tools
 
 ### install certbot (for getting ssl certs with letsencrypt)
 RUN wget https://dl.eff.org/certbot-auto && \

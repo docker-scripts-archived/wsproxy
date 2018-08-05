@@ -1,6 +1,6 @@
 include(bionic)
 
-RUN apt install -y apache2 wget openssh-server net-tools
+RUN apt install -y apache2 wget openssh-server fail2ban net-tools
 
 ### install certbot (for getting ssl certs with letsencrypt)
 RUN wget https://dl.eff.org/certbot-auto && \

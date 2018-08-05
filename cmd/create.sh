@@ -8,16 +8,18 @@ _EOF
 
 rename_function cmd_create orig_cmd_create
 cmd_create() {
-    mkdir -p sites-available sites-enabled sshtunnel-keys letsencrypt
+    mkdir -p sites-available sites-enabled sshtunnel-keys letsencrypt fail2ban
+    cp $APP_DIR/misc/apache2.conf sites-available/xmp.conf
+    touch containers.txt
+    [[ -f fail2ban/jail.local ]] || cp $APP_DIR/misc/jail.local fail2ban/
 
     orig_cmd_create \
+	--cap-add=NET_ADMIN \
         --mount type=bind,src=$(pwd)/letsencrypt,dst=/etc/letsencrypt \
         --mount type=bind,src=$(pwd)/sshtunnel-keys,dst=/home/sshtunnel/keys \
         --mount type=bind,src=$(pwd)/sites-available,dst=/etc/apache2/sites-available \
-        --mount type=bind,src=$(pwd)/sites-enabled,dst=/etc/apache2/sites-enabled
-
-    cp $APP_DIR/misc/apache2.conf sites-available/xmp.conf
-    touch containers.txt
+        --mount type=bind,src=$(pwd)/sites-enabled,dst=/etc/apache2/sites-enabled \
+        --mount type=bind,src=$(pwd)/fail2ban/jail.local,dst=/etc/fail2ban/jail.local
 
     _create_cmd_wsproxy
 }

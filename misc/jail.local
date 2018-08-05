@@ -1,0 +1,34 @@
+[DEFAULT]
+
+ignoreip = 127.0.0.1/8 172.0.0.0/8
+
+[sshd]
+enabled = true
+mode = aggressive
+
+[apache-auth]
+enabled = true
+
+[apache-badbots]
+enabled = true
+
+[apache-noscript]
+enabled = true
+
+[apache-overflows]
+enabled = true
+
+[apache-nohome]
+enabled = true
+
+[apache-botsearch]
+enabled = true
+
+[apache-fakegooglebot]
+enabled = true
+
+[apache-modsecurity]
+enabled = true
+
+[apache-shellshock]
+enabled = true
